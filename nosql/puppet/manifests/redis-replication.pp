@@ -37,7 +37,7 @@ node redisnode3.max.com{
    build::github {"twemproxy":
       source       =>  'https://github.com/twitter/twemproxy.git', 
       buildoptions =>  " --enable-debug=full",
-      installed    =>  false
+      creates      =>  "/tmp/buildtwmproxy.tmp3",
    }
 }
 
