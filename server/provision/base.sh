@@ -9,8 +9,8 @@ touch /var/vagrant_prepare
 function setMirrors {
    echo "set new mirrors"	
    cp /etc/apt/sources.list /etc/apt/sources.list.ori
-   sudo sed -i 's/archive.ubuntu.com/mirrors.sohu.com/g' /etc/apt/sources.list
-   #wget http://mirrors.163.com/.help/sources.list.trusty -O /etc/apt/sources.list
+   #sed -i 's/archive.ubuntu.com/mirrors.sohu.com/g' /etc/apt/sources.list
+   wget http://mirrors.163.com/.help/sources.list.trusty -O /etc/apt/sources.list
    #sed -i.bak '1 r /utils/sohu.mirrors' /etc/apt/sources.list
 }
 
@@ -30,4 +30,5 @@ function setLocal {
 
 #setTimeZone
 #setMirrors
-#apt-get update 
+#setLocal
+apt-get update 

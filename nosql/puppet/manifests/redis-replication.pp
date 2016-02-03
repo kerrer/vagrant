@@ -33,6 +33,14 @@ node redisnode1.max.com {
    }
 }
 
+node redisnode3.max.com{
+   build::github {"twemproxy":
+      source       =>  'https://github.com/twitter/twemproxy.git', 
+      buildoptions =>  " --enable-debug=full",
+      installed    =>  false
+   }
+}
+
 node redisnode2.max.com{
    class {'lamp::nosql::redis::install':
       package_ensure => "3.0.6",
