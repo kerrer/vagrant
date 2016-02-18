@@ -6,12 +6,11 @@
 :yaml:
   :datadir: "/tmp/vagrant-puppet/hiera"
   
-:hierarchy: 
-  - "%{::clientcert}"
-  - "%{::environment}"
-  - "virtual_%{::is_virtual}"
+:hierarchy:
+  - "%{::role}"
+  - "%{::role}/hosts"
+  - "nodes/%{::clientcert}"
   - common
   - java
-  - hosts
 
 :logger: console

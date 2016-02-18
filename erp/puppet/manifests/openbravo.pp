@@ -15,11 +15,14 @@ class { 'postgresql::server':
   listen_addresses           => '*',
   postgres_password          => 'mmmm',
 }
+
 postgresql::server::role { "openbravo":
    createdb => true,
    password_hash => postgresql_password('openbravo', 'mmmm'),
 }
+
 class { 'postgresql::server::contrib': }
+
 postgresql::server::pg_hba_rule { 'allow application network to access app database':
   description => "Open up postgresql for access from 200.1.2.0/24",
   type => 'host',
@@ -28,6 +31,7 @@ postgresql::server::pg_hba_rule { 'allow application network to access app datab
   address => '0.0.0.0/0',
   auth_method => 'md5',
 }
+
 package { "ant":
     ensure => "installed"
 }

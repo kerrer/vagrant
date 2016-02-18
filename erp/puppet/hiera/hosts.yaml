@@ -1,6 +1,0 @@
----
-hosts::host_entries:
- 'redisnode1.max.com':
-   ip: '192.168.56.101'
-   host_aliases:
-     - 'redisnode1'
