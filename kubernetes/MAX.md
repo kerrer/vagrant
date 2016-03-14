@@ -1,8 +1,2 @@
-https://github.com/coreos/coreos-kubernetes.git
-================================================================
- kubectl config set-cluster vagrant --server=https://172.17.4.101:443 --certificate-authority=${PWD}/ssl/ca.pem
- kubectl config set-credentials vagrant-admin --certificate-authority=${PWD}/ssl/ca.pem --client-key=${PWD}/ssl/admin-key.pem --client-certificate=${PWD}/ssl/admin.pem
- kubectl config set-context vagrant --cluster=vagrant --user=vagrant-admin
- kubectl config use-context vagrant
-
-$ kubectl get nodes
+NODE_MEM=3076 NODE_CPUS=4 NODES=2  BASE_IP_ADDR=192.168.56 vagrant up
+NODE_MEM=4096 NODE_CPUS=2 NODES=3 USE_KUBE_UI=true vagrant up
