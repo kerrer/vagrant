@@ -13,3 +13,12 @@
 [submodule "coreos-kubernetes"]
 	path = coreos-kubernetes
 	url = https://github.com/coreos/coreos-kubernetes.git
+[submodule "plonedev"]
+	path = plonedev
+	url = https://github.com/plone/plonedev.vagrant.git
+[submodule "hadoop/virtual-cluster"]
+	path = hadoop/virtual-cluster
+	url = https://github.com/DandyDev/virtual-hadoop-cluster.git
+[submodule "cascading-hadoop"]
+	path = cascading-hadoop
+	url = https://github.com/Cascading/vagrant-cascading-hadoop-cluster.git
