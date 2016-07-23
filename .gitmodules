@@ -1,0 +1,15 @@
+[submodule "openstack/puppet-openstack"]
+	path = openstack/puppet-openstack
+	url = https://github.com/elastx/vagrant-puppet-openstack.git
+[submodule "learning-tools"]
+	path = learning-tools
+	url = https://github.com/lowescott/learning-tools.git
+[submodule "openstack/devstack"]
+	path = openstack/devstack
+	url = https://github.com/openstack-dev/devstack-vagrant.git
+[submodule "oh-my-vagrant"]
+	path = oh-my-vagrant
+	url = https://github.com/purpleidea/oh-my-vagrant.git
+[submodule "coreos-kubernetes"]
+	path = coreos-kubernetes
+	url = https://github.com/coreos/coreos-kubernetes.git
