@@ -19,3 +19,6 @@
 [submodule "hadoop/virtual-cluster"]
 	path = hadoop/virtual-cluster
 	url = https://github.com/DandyDev/virtual-hadoop-cluster.git
+[submodule "hadoop/cascading-hadoop"]
+	path = hadoop/cascading-hadoop
+	url = https://github.com/Cascading/vagrant-cascading-hadoop-cluster.git
