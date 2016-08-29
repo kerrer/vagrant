@@ -22,3 +22,9 @@
 [submodule "hadoop/cascading-hadoop"]
 	path = hadoop/cascading-hadoop
 	url = https://github.com/Cascading/vagrant-cascading-hadoop-cluster.git
+[submodule "kubernetes-vagrant-coreos-cluster"]
+	path = kubernetes-vagrant-coreos-cluster
+	url = https://github.com/pires/kubernetes-vagrant-coreos-cluster.git
+[submodule "hadoop/cdh5"]
+	path = hadoop/cdh5
+	url = https://github.com/theclue/cdh5-vagrant.git
