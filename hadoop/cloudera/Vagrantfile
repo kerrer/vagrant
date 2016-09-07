@@ -1,0 +1,59 @@
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+$mirrors_apt = <<SCRIPT
+apt-get install curl -y
+mv /etc/apt/sources.list /etc/apt/sources.list.backup
+curl http://mirrors.163.com/.help/sources.list.trusty -o /etc/apt/sources.list
+apt-get update
+SCRIPT
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+   config.vm.box = "ubuntu/trusty64"
+  #config.vm.box = "centos/6"
+  #config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
+  config.ssh.insert_key = false
+  
+
+  config.vm.synced_folder "./puppet/hiera", "/var/lib/hiera"
+  config.vm.synced_folder "./puppet/facter", "/etc/facter"
+  
+  config.vm.define :one do |one| 
+    one.vm.hostname = "one.cluster"
+    one.vm.network :private_network, ip: "192.168.0.101"
+    one.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+    end     
+  end
+
+  config.vm.define :two do |two| 
+    two.vm.hostname = "two.cluster"
+    two.vm.network :private_network, ip: "192.168.0.102"
+    two.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+    end    
+  end
+
+  config.vm.define :three do |three| 
+    three.vm.hostname = "three.cluster"
+    three.vm.network :private_network, ip: "192.168.0.103"
+    three.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+    end   
+  end
+  
+  config.vm.provision :shell, :inline => $mirrors_apt
+  config.vm.provision :puppet do |puppet|
+        puppet.manifests_path = "puppet/manifests"
+        puppet.manifest_file  = "site.pp"
+        puppet.module_path = "/work/puppet/modules"
+        puppet.hiera_config_path = "puppet/hiera.yaml"
+        #puppet.working_directory = "/tmp/vagrant-puppet-3"
+        #puppet.facter = {
+        #      "use_debug" => "true"
+        #}
+        puppet.options = "--parser future --verbose --debug "       
+  end
+
+end
