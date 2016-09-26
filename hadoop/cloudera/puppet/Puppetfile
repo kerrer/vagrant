@@ -1,0 +1,9 @@
+forge "https://forge.puppetlabs.com"
+
+mod 'puppetlabs-ntp'    
+mod 'ghoneycutt-hosts'
+mod 'puppetlabs-firewall'
+
+mod 'razorsedge-cloudera',
+  :git => "https://github.com/razorsedge/puppet-cloudera.git"
+

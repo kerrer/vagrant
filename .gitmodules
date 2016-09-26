@@ -25,3 +25,6 @@
 [submodule "hadoop/cdh5"]
 	path = hadoop/cdh5
 	url = https://github.com/theclue/cdh5-vagrant.git
+[submodule "hadoop/hdp-repo"]
+	path = hadoop/hdp-repo
+	url = https://github.com/timveil/hdp-vagrant-local-repo.git
