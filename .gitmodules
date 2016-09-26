@@ -28,3 +28,6 @@
 [submodule "hadoop/hdp-repo"]
 	path = hadoop/hdp-repo
 	url = https://github.com/timveil/hdp-vagrant-local-repo.git
+[submodule "openstack/all-in-one"]
+	path = openstack/all-in-one
+	url = https://github.com/openstack/puppet-openstack-integration.git
