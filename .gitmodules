@@ -28,3 +28,6 @@
 [submodule "hadoop/hdp-repo"]
 	path = hadoop/hdp-repo
 	url = https://github.com/timveil/hdp-vagrant-local-repo.git
+[submodule "proxy-polipo"]
+	path = proxy-polipo
+	url = https://github.com/tmatilai/polipo-box.git

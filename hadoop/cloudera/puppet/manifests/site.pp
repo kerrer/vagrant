@@ -1,6 +1,5 @@
 node 'one.cluster' {  
     include ntp
-    include hosts
     class { 'firewall': ensure=> 'stopped'}
     
     class { '::cloudera':
@@ -11,16 +10,15 @@ node 'one.cluster' {
 
 node 'two.cluster' {  
    include ntp
-   include hosts
    class { 'firewall': ensure=> 'stopped'}
 
    class { '::cloudera':
-     cm_server_host => 'one.cluster'
+     cm_server_host => 'one.cluster',
+     use_parcels    => true
    }
 }
 node 'three.cluster' {  
    include ntp
-   include hosts
    class { 'firewall': ensure=> 'stopped'}
 
    class { '::cloudera':
