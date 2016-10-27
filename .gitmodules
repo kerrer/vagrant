@@ -31,3 +31,6 @@
 [submodule "proxy-polipo"]
 	path = proxy-polipo
 	url = https://github.com/tmatilai/polipo-box.git
+[submodule "openstack/training-labs"]
+	path = openstack/training-labs
+	url = git://git.openstack.org/openstack/training-labs.git

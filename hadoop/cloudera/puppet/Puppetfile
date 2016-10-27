@@ -7,3 +7,5 @@ mod 'puppetlabs-firewall'
 mod 'razorsedge-cloudera',
   :git => "https://github.com/razorsedge/puppet-cloudera.git"
 
+mod 'puppet-ssh',
+  :git => "https://github.com/saz/puppet-ssh.git"
