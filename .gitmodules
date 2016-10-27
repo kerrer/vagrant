@@ -34,3 +34,7 @@
 [submodule "openstack/training-labs"]
 	path = openstack/training-labs
 	url = git://git.openstack.org/openstack/training-labs.git
+[submodule "openstack/all-in-one"]
+	path = openstack/all-in-one
+	url = https://github.com/openstack/puppet-openstack-integration.git
+
