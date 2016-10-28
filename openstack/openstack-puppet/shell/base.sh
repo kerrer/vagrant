@@ -16,10 +16,5 @@ Acquire::HTTP::Proxy "http://172.17.0.6:3142";
 Acquire::HTTPS::Proxy "false";
 END
 
-cat > /etc/apt/preferences.d/repo <<END
-Package: *
-Pin: origin archive.cloudera.com 
-Pin-Priority: 1001
-END
-
 apt-get update
+apt-get install git curl

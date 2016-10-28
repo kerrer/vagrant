@@ -16,9 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
  
   #if Vagrant.has_plugin?("vagrant-proxyconf")
-  #  config.proxy.http     = "http://172.17.0.2:3142/"
+  #  config.proxy.http     = "http://172.17.0.6:3142/"
   #  config.proxy.https    = false
-  #  config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+  #  config.proxy.no_proxy = "localhost,127.0.0.1"
   #end
   
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -30,8 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     one.vm.network :private_network, ip: "192.168.56.121"
     one.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", 2048]
-    end
-    one.vm.provision :hosts, :sync_hosts => true 
+    end   
   end
 
   config.vm.define :two do |two| 
@@ -39,8 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     two.vm.network :private_network, ip: "192.168.56.122"
     two.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", 2048]
-    end    
-    two.vm.provision :hosts, :sync_hosts => true
+    end   
   end
 
   config.vm.define :three do |three| 
@@ -49,7 +47,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     three.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", 2048]
     end   
-    three.vm.provision :hosts, :sync_hosts => true
   end
   
   config.vm.define :four do |four| 
@@ -57,10 +54,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     four.vm.network :private_network, ip: "192.168.56.124"
     four.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", 2048]
-    end   
-    four.vm.provision :hosts, :sync_hosts => true
-  end
+    end 
+ end
   
+   config.vm.provision :hosts do |provisioner|
+      provisioner.autoconfigure = true
+      provisioner.sync_hosts = true
+      provisioner.add_localhost_hostnames = false
+   end
   config.vm.synced_folder "./puppet/hiera", "/var/lib/hiera"
   config.vm.synced_folder "./puppet/facter", "/etc/facter"
   

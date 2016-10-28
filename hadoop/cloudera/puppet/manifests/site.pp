@@ -15,51 +15,18 @@ class  sshkey {
   }
 }
 
-node 'one.cluster' {  
-   
+node 'one.cluster' { 
     include ntp
-    class { 'firewall': ensure=> 'stopped'}
     
-    class { '::cloudera':
-      cm_server_host   => 'one.cluster',
-     install_cmserver => true
-   }
-}
-
-node 'two.cluster' {  
-   include ntp
-   class { 'firewall': ensure=> 'stopped'}
-
-   class { '::cloudera':
-     cm_server_host => 'one.cluster',
-     use_parcels    => true
-   }
-}
-node 'three.cluster' {  
-   include ntp
-   class { 'firewall': ensure=> 'stopped'}
-
-   class { '::cloudera':
-     cm_server_host => 'one.cluster'
-   }
-}
-
-node 'four.cluster' {  
-   include ntp
-   class { 'firewall': ensure=> 'stopped'}
-
-   include sshkey
-
-  class { 'ssh::server':
-   storeconfigs_enabled => false,
-   options => {
-      'PasswordAuthentication' => 'no',
-      'PubkeyAuthentication'   => 'yes',
-      'PermitRootLogin'        => 'yes'
-   },
-  }
-
-  class { 'ssh::client':
+    file { '/root/.ssh/id_rsa':
+    	ensure => file,
+    	owner  => 'root',
+    	group  => 'root',
+   	mode   => '0600',
+    	source => '/vagrant/files/id_rsa',
+    }
+    
+    class { 'ssh::client':
       storeconfigs_enabled => false,
       options => {
         'Host *' => {
@@ -71,4 +38,30 @@ node 'four.cluster' {
         },
       },
     }
+
+    class { 'firewall': ensure=> 'stopped'}
+    
+    class { '::cloudera':
+      cm_server_host   => 'one.cluster',
+      install_cmserver => true
+   }
+}
+
+node /(two|three|four).cluster/ {
+   include ntp
+   include sshkey
+   class { 'firewall': ensure=> 'stopped'}
+   class { 'ssh::server':
+   	storeconfigs_enabled => false,
+   	options => {
+		'PasswordAuthentication' => 'no',
+        	'PubkeyAuthentication'   => 'yes',
+      		'PermitRootLogin'        => 'yes'
+   	},
+   }
+
+   class { '::cloudera':
+     cm_server_host => 'one.cluster',
+     use_parcels    => true
+   }
 }
