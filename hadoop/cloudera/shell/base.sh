@@ -12,7 +12,7 @@ mv /etc/apt/sources.list /etc/apt/sources.list.backup
 cp /vagrant/shell/sources.list.trusty /etc/apt/sources.list
 
 cat >> /etc/apt/apt.conf.d/16proxy <<END 
-Acquire::HTTP::Proxy "http://172.17.0.6:3142";
+Acquire::HTTP::Proxy "http://172.17.0.7:3142";
 Acquire::HTTPS::Proxy "false";
 END
 
@@ -23,3 +23,9 @@ Pin-Priority: 1001
 END
 
 apt-get update
+apt-get install ruby ruby-augeas
+apt-get -y autoremove puppet
+gem sources --remove http://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+#gem install puppet -N -V
+gem install puppet  -V

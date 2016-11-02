@@ -15,9 +15,12 @@ class  sshkey {
   }
 }
 
-node 'one.cluster' { 
-    include ntp
-    
+
+node 'one.cluster' {   
+   class { '::ntp':
+      servers => [ 'cn.ntp.org.cn' ],
+   }
+    include apt 
     file { '/root/.ssh/id_rsa':
     	ensure => file,
     	owner  => 'root',
@@ -49,6 +52,7 @@ node 'one.cluster' {
 
 node /(two|three|four).cluster/ {
    include ntp
+   include apt
    include sshkey
    class { 'firewall': ensure=> 'stopped'}
    class { 'ssh::server':

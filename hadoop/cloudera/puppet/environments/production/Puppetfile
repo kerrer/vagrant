@@ -4,8 +4,8 @@ mod 'puppetlabs-ntp'
 mod 'ghoneycutt-hosts'
 mod 'puppetlabs-firewall'
 
-mod 'max-cloudera',
-  :git => "https://github.com/razorsedge/puppet-cloudera.git"
+mod 'puppet-cloudera',
+  :git => "git@github.com:puppetmax/puppet-cloudera.git"
 
 mod 'puppet-ssh',
   :git => "https://github.com/saz/puppet-ssh.git"

@@ -1,6 +1,12 @@
 ---
-:backends: yaml
-:yaml:
-  :datadir: /var/lib/hiera
-:hierarchy: common
+:backend:
+  - yaml
+:hierarchy:
+  - "%{::hostname}"
+  - "common"
+  - "apt"
+  
 :logger: console
+
+:yaml:
+  :datadir:

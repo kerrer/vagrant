@@ -1,5 +1,4 @@
-puppet/modules
+puppet/**/modules
 **/*.tar.gz
 .vagrant
-*.parcel
-*.sha
+parcels

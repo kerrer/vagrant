@@ -38,3 +38,6 @@
 	path = openstack/all-in-one
 	url = https://github.com/openstack/puppet-openstack-integration.git
 
+[submodule "coreos-vagrant"]
+	path = coreos-vagrant
+	url = https://github.com/coreos/coreos-vagrant.git

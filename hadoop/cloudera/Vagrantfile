@@ -62,22 +62,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       provisioner.sync_hosts = true
       provisioner.add_localhost_hostnames = false
    end
-  config.vm.synced_folder "./puppet/hiera", "/var/lib/hiera"
-  config.vm.synced_folder "./puppet/facter", "/etc/facter"
+   
+  config.vm.synced_folder "puppet", "/etc/puppetlabs/code"
   
   #config.vm.provision :shell, :inline => $mirrors_apt
   
   config.vm.provision :shell, path: "shell/base.sh"
   config.vm.provision :puppet do |puppet|
-        puppet.manifests_path = "puppet/manifests"
-        puppet.manifest_file  = "site.pp"
-        puppet.module_path = "puppet/modules"
-        puppet.hiera_config_path = "puppet/hiera.yaml"
-        #puppet.working_directory = "/tmp/vagrant-puppet-3"
+        puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
+        puppet.environment = "production"
         #puppet.facter = {
         #      "use_debug" => "true"
         #}
-        puppet.options = "--parser future --verbose --debug "       
+        puppet.options = "--verbose --debug "       
   end
 
 end
