@@ -12,7 +12,7 @@ mv /etc/apt/sources.list /etc/apt/sources.list.backup
 cp /vagrant/shell/sources.list.trusty /etc/apt/sources.list
 
 cat >> /etc/apt/apt.conf.d/16proxy <<END 
-Acquire::HTTP::Proxy "http://172.17.0.7:3142";
+Acquire::HTTP::Proxy "http://172.17.0.4:3142";
 Acquire::HTTPS::Proxy "false";
 END
 

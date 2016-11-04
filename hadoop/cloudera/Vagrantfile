@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "centos/6"
   #config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
   config.ssh.insert_key = false
+  config.vm.box_check_update = false
  
   #if Vagrant.has_plugin?("vagrant-proxyconf")
   #  config.proxy.http     = "http://172.17.0.6:3142/"
@@ -29,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     one.vm.hostname = "one.cluster"
     one.vm.network :private_network, ip: "192.168.56.121"
     one.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--memory", 2046]
     end   
   end
 
@@ -37,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     two.vm.hostname = "two.cluster"
     two.vm.network :private_network, ip: "192.168.56.122"
     two.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--memory", 4096]
     end   
   end
 
@@ -45,17 +46,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     three.vm.hostname = "three.cluster"
     three.vm.network :private_network, ip: "192.168.56.123"
     three.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--memory", 4096]
     end   
   end
   
-  config.vm.define :four do |four| 
-    four.vm.hostname = "four.cluster"
-    four.vm.network :private_network, ip: "192.168.56.124"
-    four.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", 2048]
-    end 
- end
   
    config.vm.provision :hosts do |provisioner|
       provisioner.autoconfigure = true

@@ -13,10 +13,3 @@ hosts::host_entries:
    host_aliases:
      - 'three'
      
-apt:
-  proxy:
-    host: '172.17.0.4'
-    port: '3142'
-    https: 'false'
-    ensure: 'present'
-     

@@ -42,3 +42,4 @@ Thumbs.db
 /**/puppet/modules/*
 *.lock
 *.ruby-version
+parcel-repo

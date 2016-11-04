@@ -2,8 +2,9 @@
 :backend:
   - yaml
 :hierarchy:
-  - "nodes/%{::fqdn}"
+  - "%{::hostname}"
   - "common"
+  - "apt"
   
 :logger: console
 
